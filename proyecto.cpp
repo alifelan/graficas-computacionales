@@ -2,7 +2,9 @@
 //  main.cpp
 //  Challenge 2
 //
-//  Created by Luis Marcelo Flores Canales on 9/27/19.
+//  Created by Luis Marcelo Flores Canales on 10/13/19.
+//  José Luis Felán Villaseñor A00821099
+//  César Buenfil Vázquez A01207499
 //  Copyright © 2019 Luis Marcelo Flores Canales. All rights reserved.
 //
 #include <GLFW/glfw3.h>
@@ -25,11 +27,11 @@ GLfloat halfScreenDepth = -500;
 GLfloat rotationX = 0.0f;
 GLfloat rotationY = 0.0f;
 /* GLfloat color[] =
-{
-    255,0,0,
-    0,255,0,
-    0,0,255
-}; */
+ {
+ 255,0,0,
+ 0,255,0,
+ 0,0,255
+ }; */
 //El punto donde se encuentra la figura de forma inicial
 GLfloat moveX = SCREEN_WIDTH/2;
 GLfloat moveY = SCREEN_HEIGHT/2;
@@ -137,60 +139,60 @@ void keyMovement(GLFWwindow* window, int key, int scancode, int action, int mods
         switch (key)
         {
             case GLFW_KEY_UP:
-                rotationX -= rotationSpeed;
-                break;
+            rotationX -= rotationSpeed;
+            break;
             case GLFW_KEY_DOWN:
-                rotationX += rotationSpeed;
-                break;
+            rotationX += rotationSpeed;
+            break;
             case GLFW_KEY_RIGHT:
-                rotationY += rotationSpeed;
-                break;
+            rotationY += rotationSpeed;
+            break;
             case GLFW_KEY_LEFT:
-                rotationY -= rotationSpeed;
-                break;
+            rotationY -= rotationSpeed;
+            break;
             case GLFW_KEY_W:
-                halfScreenHeight = moveSpeed + halfScreenHeight;
-                break;
+            halfScreenHeight = moveSpeed + halfScreenHeight;
+            break;
             case GLFW_KEY_S:
-                halfScreenHeight = halfScreenHeight - moveSpeed;
-                break;
+            halfScreenHeight = halfScreenHeight - moveSpeed;
+            break;
             case GLFW_KEY_D:
-                halfScreenWidth = moveSpeed + halfScreenWidth;
-                break;
+            halfScreenWidth = moveSpeed + halfScreenWidth;
+            break;
             case GLFW_KEY_J:
-                halfScreenDepth += moveSpeed;
-                break;
+            halfScreenDepth += moveSpeed;
+            break;
             case GLFW_KEY_K:
-                halfScreenDepth -= moveSpeed;
-                break;
+            halfScreenDepth -= moveSpeed;
+            break;
             case GLFW_KEY_A:
-                halfScreenWidth = halfScreenWidth - moveSpeed;
-                break;
+            halfScreenWidth = halfScreenWidth - moveSpeed;
+            break;
             case GLFW_KEY_N:
-                edge_length -= 1;
-                break;
+            edge_length -= 1;
+            break;
             case GLFW_KEY_M:
-                edge_length += 1;
-                break;
+            edge_length += 1;
+            break;
             case GLFW_KEY_X:
-                mode = GL_POINTS;
-                break;
+            mode = GL_POINTS;
+            break;
             case GLFW_KEY_C:
-                mode = GL_LINES;
-                break;
+            mode = GL_LINES;
+            break;
             case GLFW_KEY_V:
-                mode = GL_TRIANGLES;
-                break;
+            mode = GL_TRIANGLES;
+            break;
             case GLFW_KEY_B:
-                mode = GL_QUADS;
-                break;
+            mode = GL_QUADS;
+            break;
             case GLFW_KEY_Z:
-                if(fill_mode == GL_FILL){
-                    fill_mode = GL_LINE;
-                } else {
-                    fill_mode = GL_FILL;
-                }
-                break;
+            if(fill_mode == GL_FILL){
+                fill_mode = GL_LINE;
+            } else {
+                fill_mode = GL_FILL;
+            }
+            break;
         }
 
 
@@ -199,14 +201,6 @@ void keyMovement(GLFWwindow* window, int key, int scancode, int action, int mods
 
 void DrawCube(GLfloat centerPosX, GLfloat centerPosY, GLfloat centerPosZ, GLfloat edgeLength)
 {
-    // Body Face
-    GLfloat halfSideLength = edgeLength * 0.5f;
-    // Body Side
-    GLfloat SideLength = edgeLength;
-    // Shell Face
-    // Shell Side
-    GLfloat ShellSideLength = edgeLength * 0.5f;
-
     // Face
     GLfloat faceWidthLength = edgeLength * 5.0f; // y
     GLfloat faceHeigthLength = edgeLength * 10.0f; // x
@@ -214,14 +208,27 @@ void DrawCube(GLfloat centerPosX, GLfloat centerPosY, GLfloat centerPosZ, GLfloa
     GLfloat bodyWidthLength = edgeLength * 5.0f; // y
     GLfloat bodyHeigthLength = edgeLength  * 20.0f; // z
     // Shell
-    GLfloat shellWidthLength = edgeLength * 8.0f; // x
-    GLfloat shellHeigthLength = edgeLength * 12.0f; // y
-    GLfloat shellDepthLength = edgeLength * 9.0f; // z
+    GLfloat shellWidthLength = faceHeigthLength * 0.9f; // x
+    GLfloat shellHeigthLength = edgeLength * 20.0f; // y
+    GLfloat shellDepthLength = bodyHeigthLength * 0.9f; // z
     // Shell Draw
     // Eye Length
+    GLfloat eyeLengthWidthLength = faceHeigthLength * 0.4f; // x
+    GLfloat eyeLengthHeigthLength = edgeLength * 10.0f; // y
+    GLfloat eyeLengthDepthLength = bodyHeigthLength - edgeLength; // z
     // Eye
+    GLfloat eyeWidthLength = faceHeigthLength * 0.2f; // x
+    GLfloat eyeHeigthLength = edgeLength * 10.0f; // y
+    GLfloat eyeDepthLength = bodyHeigthLength - (edgeLength * 3.0f); // z
     // Mouth
+    GLfloat mouthWidthLength = faceHeigthLength * 0.6f; // x
+    GLfloat mouthHeigthLength = edgeLength * 10.0f; // y
+    GLfloat mouthDepthLength = bodyHeigthLength + 0.1f; // z
     // Pupil
+    GLfloat pupilWidthLength = faceHeigthLength * 0.6f; // x
+    GLfloat pupilHeigthLength = edgeLength * 10.0f; // y
+    GLfloat pupilDepthLength = bodyHeigthLength + 0.1f; // z
+
 
     GLfloat vertices[] = {
         // Face ////////////////////////////////////
@@ -262,41 +269,41 @@ void DrawCube(GLfloat centerPosX, GLfloat centerPosY, GLfloat centerPosZ, GLfloa
         centerPosX + faceHeigthLength, centerPosY - bodyWidthLength, centerPosZ + bodyHeigthLength,  // bottom left
 
         // Shell/////////////////////////////////////////////
-        // front face
-        centerPosX - faceHeigthLength + (faceHeigthLength * 0.1f), centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - (bodyHeigthLength * 0.9f), // top left
-        centerPosX + faceHeigthLength * 0.9f, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - (bodyHeigthLength * 0.9f), // top right
-        centerPosX + faceHeigthLength * 0.9f, centerPosY + faceWidthLength, centerPosZ - (bodyHeigthLength * 0.9f), // bottom right
-        centerPosX - faceHeigthLength + (faceHeigthLength * 0.1f), centerPosY + faceWidthLength, centerPosZ - (bodyHeigthLength * 0.9f), // bottom left
+        // Front face
+        centerPosX - shellWidthLength, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ + (shellDepthLength * .18f), // top left
+        centerPosX + shellWidthLength, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ + (shellDepthLength * .18f), // top right
+        centerPosX + shellWidthLength, centerPosY + faceWidthLength, centerPosZ + (shellDepthLength * .18f), // bottom right
+        centerPosX - shellWidthLength, centerPosY + faceWidthLength, centerPosZ + (shellDepthLength * .18f), // bottom left
 
-        // back face
-        centerPosX - faceHeigthLength + (faceHeigthLength * 0.1f), centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - (bodyHeigthLength * 0.1f), // top left
-        centerPosX + faceHeigthLength * 0.9f, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - (bodyHeigthLength * 0.1f), // top right
-        centerPosX + faceHeigthLength * 0.9f, centerPosY + faceWidthLength, centerPosZ - (bodyHeigthLength * 0.1f), // bottom right
-        centerPosX - faceHeigthLength + (faceHeigthLength * 0.1f), centerPosY + faceWidthLength, centerPosZ - (bodyHeigthLength * 0.1f), // bottom left
+        // Back face
+        centerPosX - shellWidthLength, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - shellDepthLength, // top left
+        centerPosX + shellWidthLength, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - shellDepthLength, // top right
+        centerPosX + shellWidthLength, centerPosY + faceWidthLength, centerPosZ - shellDepthLength, // bottom right
+        centerPosX - shellWidthLength, centerPosY + faceWidthLength, centerPosZ - shellDepthLength, // bottom left
 
         // top face
-        centerPosX - faceHeigthLength + (faceHeigthLength * 0.1f), centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - (bodyHeigthLength * 0.9f), // top left
-        centerPosX + faceHeigthLength * 0.9f, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - (bodyHeigthLength * 0.9f), // top right
-        centerPosX + faceHeigthLength * 0.9f, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - (bodyHeigthLength * 0.1f), // top right
-        centerPosX - faceHeigthLength + (faceHeigthLength * 0.1f), centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - (bodyHeigthLength * 0.1f), // top left
+        centerPosX - shellWidthLength, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - shellDepthLength, // top left back
+        centerPosX + shellWidthLength, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - shellDepthLength, // top right back
+        centerPosX + shellWidthLength, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ + (shellDepthLength * .18f), // top right front
+        centerPosX - shellWidthLength, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ + (shellDepthLength * .18f), // top left front
 
         // bottom face
-        centerPosX - faceHeigthLength + (faceHeigthLength * 0.1f), centerPosY + bodyWidthLength, centerPosZ - (bodyHeigthLength * 0.9f), // top left
-        centerPosX + faceHeigthLength * 0.9f, centerPosY + bodyWidthLength, centerPosZ - (bodyHeigthLength * 0.9f), // top right
-        centerPosX + faceHeigthLength * 0.9f, centerPosY + bodyWidthLength, centerPosZ - (bodyHeigthLength * 0.1f), // top right
-        centerPosX - faceHeigthLength + (faceHeigthLength * 0.1f), centerPosY + bodyWidthLength, centerPosZ - (bodyHeigthLength * 0.1f), // top left
+        centerPosX - shellWidthLength, centerPosY + faceWidthLength, centerPosZ - shellDepthLength, // top left back
+        centerPosX + shellWidthLength, centerPosY + faceWidthLength, centerPosZ - shellDepthLength, // top right back
+        centerPosX + shellWidthLength, centerPosY + faceWidthLength, centerPosZ + (shellDepthLength * .18f), // top right front
+        centerPosX - shellWidthLength, centerPosY + faceWidthLength, centerPosZ + (shellDepthLength * .18f), // top left front
 
         // Right side
-        centerPosX - faceHeigthLength + (faceHeigthLength * 0.1f), centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - (bodyHeigthLength * 0.9f), // top left
-        centerPosX - faceHeigthLength + (faceHeigthLength * 0.1f), centerPosY + faceWidthLength, centerPosZ - (bodyHeigthLength * 0.9f), // bottom left
-        centerPosX - faceHeigthLength + (faceHeigthLength * 0.1f), centerPosY + faceWidthLength, centerPosZ - (bodyHeigthLength * 0.1f), // bottom left
-        centerPosX - faceHeigthLength + (faceHeigthLength * 0.1f), centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - (bodyHeigthLength * 0.1f), // top left
+        centerPosX - shellWidthLength, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - shellDepthLength, // top left back
+        centerPosX - shellWidthLength, centerPosY + faceWidthLength, centerPosZ - shellDepthLength, // bottom left back
+        centerPosX - shellWidthLength, centerPosY + faceWidthLength, centerPosZ + (shellDepthLength * .18f), // bottom left front
+        centerPosX - shellWidthLength, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ + (shellDepthLength * .18f), // top left front
 
         // left side
-        centerPosX + faceHeigthLength * 0.9f, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - (bodyHeigthLength * 0.9f), // top right
-        centerPosX + faceHeigthLength * 0.9f, centerPosY + faceWidthLength, centerPosZ - (bodyHeigthLength * 0.9f), // bottom right
-        centerPosX + faceHeigthLength * 0.9f, centerPosY + faceWidthLength, centerPosZ - (bodyHeigthLength * 0.1f), // bottom right
-        centerPosX + faceHeigthLength * 0.9f, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - (bodyHeigthLength * 0.1f), // top right
+        centerPosX + shellWidthLength, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ - shellDepthLength, // top right
+        centerPosX + shellWidthLength, centerPosY + faceWidthLength, centerPosZ - shellDepthLength, // bottom right
+        centerPosX + shellWidthLength, centerPosY + faceWidthLength, centerPosZ + (shellDepthLength * .18f), // bottom right
+        centerPosX + shellWidthLength, centerPosY + faceWidthLength + shellHeigthLength, centerPosZ + (shellDepthLength * .18f), // top right
 
 
         // Shell Draw /////////////////////////
@@ -304,175 +311,175 @@ void DrawCube(GLfloat centerPosX, GLfloat centerPosY, GLfloat centerPosZ, GLfloa
         // Eye Length /////////////////////////
         // Left //
         // front face
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX - (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX - (faceHeigthLength * 0.4f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - edgeLength, // bottom right
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - edgeLength, // bottom left
+        centerPosX - eyeLengthWidthLength - (faceHeigthLength * 0.2f), centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength, // top left
+        centerPosX - eyeLengthWidthLength, centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength, // top right
+        centerPosX - eyeLengthWidthLength, centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength, // bottom right
+        centerPosX - eyeLengthWidthLength - (faceHeigthLength * 0.2f), centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength, // bottom left
 
         // back face
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top left
-        centerPosX - (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top right
-        centerPosX - (faceHeigthLength * 0.4f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // bottom right
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // bottom left
+        centerPosX - eyeLengthWidthLength - (faceHeigthLength * 0.2f), centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top left
+        centerPosX - eyeLengthWidthLength, centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top right
+        centerPosX - eyeLengthWidthLength, centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // bottom right
+        centerPosX - eyeLengthWidthLength - (faceHeigthLength * 0.2f), centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // bottom left
 
         // top face
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX - (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX - (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top right
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top left
+        centerPosX - eyeLengthWidthLength - (faceHeigthLength * 0.2f), centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength, // top left
+        centerPosX - eyeLengthWidthLength, centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength, // top right
+        centerPosX - eyeLengthWidthLength, centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top right
+        centerPosX - eyeLengthWidthLength - (faceHeigthLength * 0.2f), centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top left
 
         // bottom face
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX - (faceHeigthLength * 0.4f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX - (faceHeigthLength * 0.4f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top right
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top left
+        centerPosX - eyeLengthWidthLength - (faceHeigthLength * 0.2f), centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength, // top left
+        centerPosX - eyeLengthWidthLength, centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength, // top right
+        centerPosX - eyeLengthWidthLength, centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top right
+        centerPosX - eyeLengthWidthLength - (faceHeigthLength * 0.2f), centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top left
 
         // right side
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - edgeLength, // bottom left
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // bottom left
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top left
+        centerPosX - eyeLengthWidthLength - (faceHeigthLength * 0.2f), centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength, // top left
+        centerPosX - eyeLengthWidthLength - (faceHeigthLength * 0.2f), centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength, // bottom left
+        centerPosX - eyeLengthWidthLength - (faceHeigthLength * 0.2f), centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // bottom left
+        centerPosX - eyeLengthWidthLength - (faceHeigthLength * 0.2f), centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top left
 
         // left side
-        centerPosX - (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX - (faceHeigthLength * 0.4f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - edgeLength, // bottom right
-        centerPosX - (faceHeigthLength * 0.4f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // bottom right
-        centerPosX - (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top right
+        centerPosX - eyeLengthWidthLength, centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength, // top right
+        centerPosX - eyeLengthWidthLength, centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength, // bottom right
+        centerPosX - eyeLengthWidthLength, centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // bottom right
+        centerPosX - eyeLengthWidthLength, centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top right
 
 
         // Right //
         // front face
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX + (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX + (faceHeigthLength * 0.4f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - edgeLength, // bottom right
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - edgeLength, // bottom left
+        centerPosX + eyeLengthWidthLength + (faceHeigthLength * 0.2f), centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength, // top left
+        centerPosX + eyeLengthWidthLength, centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength, // top right
+        centerPosX + eyeLengthWidthLength, centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength, // bottom right
+        centerPosX + eyeLengthWidthLength + (faceHeigthLength * 0.2f), centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength, // bottom left
 
         // back face
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top left
-        centerPosX + (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top right
-        centerPosX + (faceHeigthLength * 0.4f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // bottom right
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // bottom left
+        centerPosX + eyeLengthWidthLength + (faceHeigthLength * 0.2f), centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top left
+        centerPosX + eyeLengthWidthLength, centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top right
+        centerPosX + eyeLengthWidthLength, centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // bottom right
+        centerPosX + eyeLengthWidthLength + (faceHeigthLength * 0.2f), centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // bottom left
 
         // top face
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX + (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX + (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top right
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top left
+        centerPosX + eyeLengthWidthLength + (faceHeigthLength * 0.2f), centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength, // top left
+        centerPosX + eyeLengthWidthLength, centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength, // top right
+        centerPosX + eyeLengthWidthLength, centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top right
+        centerPosX + eyeLengthWidthLength + (faceHeigthLength * 0.2f), centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top left
 
         // bottom face
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX + (faceHeigthLength * 0.4f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX + (faceHeigthLength * 0.4f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top right
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top left
+        centerPosX + eyeLengthWidthLength + (faceHeigthLength * 0.2f), centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength, // top left
+        centerPosX + eyeLengthWidthLength, centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength, // top right
+        centerPosX + eyeLengthWidthLength, centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top right
+        centerPosX + eyeLengthWidthLength + (faceHeigthLength * 0.2f), centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top left
 
         // right side
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - edgeLength, // bottom left
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // bottom left
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top left
+        centerPosX + eyeLengthWidthLength + (faceHeigthLength * 0.2f), centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength, // top left
+        centerPosX + eyeLengthWidthLength + (faceHeigthLength * 0.2f), centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength, // bottom left
+        centerPosX + eyeLengthWidthLength + (faceHeigthLength * 0.2f), centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // bottom left
+        centerPosX + eyeLengthWidthLength + (faceHeigthLength * 0.2f), centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top left
 
         // Left side
-        centerPosX + (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX + (faceHeigthLength * 0.4f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - edgeLength, // bottom right
-        centerPosX + (faceHeigthLength * 0.4f), centerPosY + faceWidthLength, centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // bottom right
-        centerPosX + (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 2.0f), // top right
+        centerPosX + eyeLengthWidthLength, centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength, // top right
+        centerPosX + eyeLengthWidthLength, centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength, // bottom right
+        centerPosX + eyeLengthWidthLength, centerPosY + faceWidthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // bottom right
+        centerPosX + eyeLengthWidthLength, centerPosY + eyeLengthHeigthLength, centerPosZ + eyeLengthDepthLength - edgeLength, // top right
 
 
         // Eye /////////////////////////
         // Left //
         // front face
-        centerPosX - (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX - (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX - (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // bottom right
-        centerPosX - (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // bottom left
+        centerPosX - (eyeWidthLength * 4.0f), centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + bodyHeigthLength, // top left
+        centerPosX - eyeWidthLength, centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + bodyHeigthLength, // top right
+        centerPosX - eyeWidthLength, centerPosY + eyeHeigthLength, centerPosZ + bodyHeigthLength, // bottom right
+        centerPosX - (eyeWidthLength * 4.0f), centerPosY + eyeHeigthLength, centerPosZ + bodyHeigthLength, // bottom left
 
         // back face
-        centerPosX - (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // top left
-        centerPosX - (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // top right
-        centerPosX - (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom right
-        centerPosX - (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom left
+        centerPosX - (eyeWidthLength * 4.0f), centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + eyeDepthLength, // top left
+        centerPosX - eyeWidthLength, centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + eyeDepthLength, // top right
+        centerPosX - eyeWidthLength, centerPosY + eyeHeigthLength, centerPosZ + eyeDepthLength, // bottom right
+        centerPosX - (eyeWidthLength * 4.0f), centerPosY + eyeHeigthLength, centerPosZ + eyeDepthLength, // bottom left
 
         // top face
-        centerPosX - (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX - (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX - (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom right
-        centerPosX - (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom left
+        centerPosX - (eyeWidthLength * 4.0f), centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + bodyHeigthLength, // top left
+        centerPosX - eyeWidthLength, centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + bodyHeigthLength, // top right
+        centerPosX - eyeWidthLength, centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + eyeDepthLength, // bottom right
+        centerPosX - (eyeWidthLength * 4.0f), centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + eyeDepthLength, // bottom left
 
         // bottom face
-        centerPosX - (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX - (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX - (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom right
-        centerPosX - (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom left
+        centerPosX - (eyeWidthLength * 4.0f), centerPosY + eyeHeigthLength, centerPosZ + bodyHeigthLength, // top left
+        centerPosX - eyeWidthLength, centerPosY + eyeHeigthLength, centerPosZ + bodyHeigthLength, // top right
+        centerPosX - eyeWidthLength, centerPosY + eyeHeigthLength, centerPosZ + eyeDepthLength, // bottom right
+        centerPosX - (eyeWidthLength * 4.0f), centerPosY + eyeHeigthLength, centerPosZ + eyeDepthLength, // bottom left
 
         // left face
-        centerPosX - (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX - (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // bottom left
-        centerPosX - (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX - (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom left
+        centerPosX - (eyeWidthLength * 4.0f), centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + bodyHeigthLength, // top left
+        centerPosX - (eyeWidthLength * 4.0f), centerPosY + eyeHeigthLength, centerPosZ + bodyHeigthLength, // bottom left
+        centerPosX - (eyeWidthLength * 4.0f), centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + bodyHeigthLength, // top left
+        centerPosX - (eyeWidthLength * 4.0f), centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + eyeDepthLength, // bottom left
 
         //right face
-        centerPosX - (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX - (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom right
-        centerPosX - (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom right
-        centerPosX - (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
+        centerPosX - eyeWidthLength, centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + bodyHeigthLength, // top right
+        centerPosX - eyeWidthLength, centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + eyeDepthLength, // bottom right
+        centerPosX - eyeWidthLength, centerPosY + eyeHeigthLength, centerPosZ + eyeDepthLength, // bottom right
+        centerPosX - eyeWidthLength, centerPosY + eyeHeigthLength, centerPosZ + bodyHeigthLength, // top right
 
         // Right //
         // front face
-        centerPosX + (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX + (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX + (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // bottom right
-        centerPosX + (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // bottom left
+        centerPosX + (eyeWidthLength * 4.0f), centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + bodyHeigthLength, // top left
+        centerPosX + eyeWidthLength, centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + bodyHeigthLength, // top right
+        centerPosX + eyeWidthLength, centerPosY + eyeHeigthLength, centerPosZ + bodyHeigthLength, // bottom right
+        centerPosX + (eyeWidthLength * 4.0f), centerPosY + eyeHeigthLength, centerPosZ + bodyHeigthLength, // bottom left
 
         // back face
-        centerPosX + (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // top left
-        centerPosX + (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // top right
-        centerPosX + (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom right
-        centerPosX + (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom left
+        centerPosX + (eyeWidthLength * 4.0f), centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + eyeDepthLength, // top left
+        centerPosX + eyeWidthLength, centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + eyeDepthLength, // top right
+        centerPosX + eyeWidthLength, centerPosY + eyeHeigthLength, centerPosZ + eyeDepthLength, // bottom right
+        centerPosX + (eyeWidthLength * 4.0f), centerPosY + eyeHeigthLength, centerPosZ + eyeDepthLength, // bottom left
 
         // top face
-        centerPosX + (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX + (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX + (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom right
-        centerPosX + (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom left
+        centerPosX + (eyeWidthLength * 4.0f), centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + bodyHeigthLength, // top left
+        centerPosX + eyeWidthLength, centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + bodyHeigthLength, // top right
+        centerPosX + eyeWidthLength, centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + eyeDepthLength, // bottom right
+        centerPosX + (eyeWidthLength * 4.0f), centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + eyeDepthLength, // bottom left
 
         // bottom face
-        centerPosX + (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX + (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX + (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom right
-        centerPosX + (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom left
+        centerPosX + (eyeWidthLength * 4.0f), centerPosY + eyeHeigthLength, centerPosZ + bodyHeigthLength, // top left
+        centerPosX + eyeWidthLength, centerPosY + eyeHeigthLength, centerPosZ + bodyHeigthLength, // top right
+        centerPosX + eyeWidthLength, centerPosY + eyeHeigthLength, centerPosZ + eyeDepthLength, // bottom right
+        centerPosX + (eyeWidthLength * 4.0f), centerPosY + eyeHeigthLength, centerPosZ + eyeDepthLength, // bottom left
 
         // left face
-        centerPosX + (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX + (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // bottom left
-        centerPosX + (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - edgeLength, // top left
-        centerPosX + (faceHeigthLength * 0.8f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom left
+        centerPosX + (eyeWidthLength * 4.0f), centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + bodyHeigthLength + 0.1f, // top left
+        centerPosX + (eyeWidthLength * 4.0f), centerPosY + eyeHeigthLength, centerPosZ + bodyHeigthLength + 0.1f, // bottom left
+        centerPosX + (eyeWidthLength * 4.0f), centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + bodyHeigthLength + 0.1f, // top left
+        centerPosX + (eyeWidthLength * 4.0f), centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + eyeDepthLength + 0.1f, // bottom left
 
         //right face
-        centerPosX + (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
-        centerPosX + (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 4.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom right
-        centerPosX + (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - (edgeLength * 4.0f), // bottom right
-        centerPosX + (faceHeigthLength * 0.2f), centerPosY + (faceWidthLength * 2.0f), centerPosZ + bodyHeigthLength - edgeLength, // top right
+        centerPosX + eyeWidthLength, centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + bodyHeigthLength, // top right
+        centerPosX + eyeWidthLength, centerPosY + (eyeHeigthLength * 2.0f), centerPosZ + eyeDepthLength, // bottom right
+        centerPosX + eyeWidthLength, centerPosY + eyeHeigthLength, centerPosZ + eyeDepthLength, // bottom right
+        centerPosX + eyeWidthLength, centerPosY + eyeHeigthLength, centerPosZ + bodyHeigthLength, // top right
 
         // Mouth /////////////////////////
         // front face
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 0.6f), centerPosZ + bodyHeigthLength + 0.1f, // top left
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 0.6f), centerPosZ + bodyHeigthLength + 0.1f, // top right
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY - (faceWidthLength * 0.4f), centerPosZ + bodyHeigthLength + 0.1f, // bottom right
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY - (faceWidthLength * 0.4f), centerPosZ + bodyHeigthLength + 0.1f, // bottom left
+        centerPosX - mouthWidthLength, centerPosY + (faceWidthLength * 0.6f), centerPosZ + mouthDepthLength, // top left
+        centerPosX + mouthWidthLength, centerPosY + (faceWidthLength * 0.6f), centerPosZ + mouthDepthLength, // top right
+        centerPosX + mouthWidthLength, centerPosY - (faceWidthLength * 0.4f), centerPosZ + mouthDepthLength, // bottom right
+        centerPosX - mouthWidthLength, centerPosY - (faceWidthLength * 0.4f), centerPosZ + mouthDepthLength, // bottom left
 
         // Pupil /////////////////////////
         // Left //
         // front face
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 3.5f), centerPosZ + bodyHeigthLength - edgeLength + 0.1f, // top left
-        centerPosX - (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 3.5f), centerPosZ + bodyHeigthLength - edgeLength + 0.1f, // top right
-        centerPosX - (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.5f), centerPosZ + bodyHeigthLength - edgeLength + 0.1f, // bottom right
-        centerPosX - (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 2.5f), centerPosZ + bodyHeigthLength - edgeLength + 0.1f, // bottom left
+        centerPosX - pupilWidthLength, centerPosY + (faceWidthLength * 3.5f), centerPosZ + pupilDepthLength, // top left
+        centerPosX - (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 3.5f), centerPosZ + pupilDepthLength, // top right
+        centerPosX - (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.5f), centerPosZ + pupilDepthLength, // bottom right
+        centerPosX - pupilWidthLength, centerPosY + (faceWidthLength * 2.5f), centerPosZ + pupilDepthLength, // bottom left
         // Right //
         // front face
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 3.5f), centerPosZ + bodyHeigthLength - edgeLength + 0.1f, // top left
-        centerPosX + (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 3.5f), centerPosZ + bodyHeigthLength - edgeLength + 0.1f, // top right
-        centerPosX + (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.5f), centerPosZ + bodyHeigthLength - edgeLength + 0.1f, // bottom right
-        centerPosX + (faceHeigthLength * 0.6f), centerPosY + (faceWidthLength * 2.5f), centerPosZ + bodyHeigthLength - edgeLength + 0.1f, // bottom left
+        centerPosX + pupilWidthLength, centerPosY + (faceWidthLength * 3.5f), centerPosZ + pupilDepthLength, // top left
+        centerPosX + (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 3.5f), centerPosZ + pupilDepthLength, // top right
+        centerPosX + (faceHeigthLength * 0.4f), centerPosY + (faceWidthLength * 2.5f), centerPosZ + pupilDepthLength, // bottom right
+        centerPosX + pupilWidthLength, centerPosY + (faceWidthLength * 2.5f), centerPosZ + pupilDepthLength, // bottom left
 
     };
 
